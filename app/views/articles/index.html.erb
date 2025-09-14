@@ -37,51 +37,23 @@
           </ul>
         </div>
 
-        <div class="article-preview">
-          <div class="article-meta">
-            <a href="/profile/eric-simons"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
-            <div class="info">
-              <a href="/profile/eric-simons" class="author">Eric Simons</a>
-              <span class="date">January 20th</span>
+    <% if @articles.any? %>
+        <% @articles.each do |article| %>
+            <div class="article-preview">
+                <h1>
+                    <%= link_to article.title, article_path(article), class: "preview-link" %>
+                </h1>
+                <p><%= article.description %></p>
+                <span>Read more...</span>
             </div>
-            <button class="btn btn-outline-primary btn-sm pull-xs-right">
-              <i class="ion-heart"></i> 29
-            </button>
-          </div>
-          <a href="/article/how-to-build-webapps-that-scale" class="preview-link">
-            <h1>How to build webapps that scale</h1>
-            <p>This is the description for the post.</p>
-            <span>Read more...</span>
-            <ul class="tag-list">
-              <li class="tag-default tag-pill tag-outline">realworld</li>
-              <li class="tag-default tag-pill tag-outline">implementations</li>
-            </ul>
-          </a>
-        </div>
+        <% end %>
+    <% else %>
+    <div class="article-preview">
+        <p>まだ記事がありません。右下の「Create」から作成してね！</p>
+    </div>
+    <% end %>
 
-        <div class="article-preview">
-          <div class="article-meta">
-            <a href="/profile/albert-pai"><img src="http://i.imgur.com/N4VcUeJ.jpg" /></a>
-            <div class="info">
-              <a href="/profile/albert-pai" class="author">Albert Pai</a>
-              <span class="date">January 20th</span>
-            </div>
-            <button class="btn btn-outline-primary btn-sm pull-xs-right">
-              <i class="ion-heart"></i> 32
-            </button>
-          </div>
-          <a href="/article/the-song-you" class="preview-link">
-            <h1>The song you won't ever stop singing. No matter how hard you try.</h1>
-            <p>This is the description for the post.</p>
-            <span>Read more...</span>
-            <ul class="tag-list">
-              <li class="tag-default tag-pill tag-outline">realworld</li>
-              <li class="tag-default tag-pill tag-outline">implementations</li>
-            </ul>
-          </a>
-        </div>
-
-        <%= link_to "Create", "/articles/new",class: "btn btn-lg pull-xs-right btn-primary" %>
+        <%= link_to "Create", new_article_path, class: "btn btn-lg pull-xs-right btn-primary" %>
 
         <ul class="pagination">
           <li class="page-item active">
