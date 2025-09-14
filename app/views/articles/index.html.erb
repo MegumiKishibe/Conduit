@@ -37,17 +37,17 @@
           </ul>
         </div>
 
-    <% if @articles.any? %>
-        <% @articles.each do |article| %>
-            <div class="article-preview">
-                <h1>
-                    <%= link_to article.title, article_path(article), class: "preview-link" %>
-                </h1>
-                <p><%= article.description %></p>
-                <span>Read more...</span>
-            </div>
-        <% end %>
-    <% else %>
+        <% if @articles.any? %>
+            <% @articles.each do |article| %>
+                <div class="article-preview">
+                    <h1>
+                        <%= link_to article.title, article_path(article), class: "preview-link" %>
+                    </h1>
+                    <p><%= article.body.truncate(100) %></p>
+                    <span>Read more...</span>
+                </div>
+            <% end %>
+        <% else %>
     <div class="article-preview">
         <p>まだ記事がありません。右下の「Create」から作成してね！</p>
     </div>

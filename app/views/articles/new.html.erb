@@ -25,21 +25,7 @@
           <li>That title is required</li>
         </ul>
 
-<%= form_with model: @article, local: true do |f| %>
-  <fieldset class="form-group">
-    <%= f.text_field :title, class: "form-control form-control-lg", placeholder: "Article Title" %>
-  </fieldset>
-
-  <fieldset class="form-group">
-    <%= f.text_field :description, class: "form-control", placeholder: "What's this article about?" %>
-  </fieldset>
-
-  <fieldset class="form-group">
-    <%= f.text_area :body, class: "form-control", rows: 8, placeholder: "Write your article (in markdown)" %>
-  </fieldset>
-
-  <%= f.submit "Publish Article", class: "btn btn-lg pull-xs-right btn-primary" %>
-<% end %>
+        <%= render "form" %>
       </div>
     </div>
   </div>

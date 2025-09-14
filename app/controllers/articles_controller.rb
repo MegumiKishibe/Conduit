@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:show, :edit, :update]
+
   def index
     @articles = Article.all
   end
@@ -14,12 +16,33 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to articles_path
+      redirect_to articles_path, notice: "記事を作成しました"
     else
       render :new
     end
   end
 
-  def edit
+def edit
+  @article = Article.find(params[:id])
+end
+
+def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      redirect_to articles_path, notice: "記事を更新しました"
+    else
+      render :edit
+    end
+  end
+
+private
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+
+  def article_params
+    params.require(:article).permit(:title, :description, :body)
   end
 end
